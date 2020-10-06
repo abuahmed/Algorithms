@@ -8,7 +8,7 @@ namespace LeetCode
 {
     partial class Solution
     {
-        private static void Main(string[] args)
+        private static void MainArrays2(string[] args)
         {
             var interval = new int[1][];
             interval[0] = new[] { 4, 5 };

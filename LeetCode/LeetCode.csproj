@@ -44,6 +44,7 @@
     <Compile Include="Arrays.cs" />
     <Compile Include="Arrays2.cs" />
     <Compile Include="Backtracking.cs" />
+    <Compile Include="Dp.cs" />
     <Compile Include="Greedy.cs" />
     <Compile Include="LinkedListNode.cs" />
     <Compile Include="Sorting.cs" />

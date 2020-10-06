@@ -431,6 +431,8 @@ namespace LeetCode
             //return answers;
         }
 
+        //CombinationSum4
+        /*
         static int CombinationSum4(int[] candidates, int target)
         {
             IList<IList<int>> answers = new List<IList<int>>();
@@ -467,7 +469,8 @@ namespace LeetCode
             }
 
         }
-
+        */
+        
         static IList<int> SequentialDigits(int low, int high)
         {
             IList<int> answers = new List<int>();
