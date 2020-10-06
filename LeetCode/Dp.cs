@@ -14,8 +14,8 @@ namespace LeetCode
 //            var nums = new int[] {1, 2, 3};
 //            var res = new Combination().CombinationSum4(nums, 100);
 
-            var nums = new int[] { 1, 100, 1, 1, 1, 100, 1, 1, 100, 1 };
-            var res = new Combination().MinCostClimbingStairs(nums);
+            //var nums = new int[] { 1, 100, 1, 1, 1, 100, 1, 1, 100, 1 };
+            //var res = new Combination().MinCostClimbingStairs(nums);
         }
     }
     
