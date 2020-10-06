@@ -23,14 +23,7 @@ namespace LeetCode
     {
         public int MinCostClimbingStairs(int[] cost)
         {
-            int f1 = 0, f2 = 0;
-            for (int i = cost.Length - 1; i >= 0; --i)
-            {
-                int f0 = cost[i] + Math.Min(f1, f2);
-                f2 = f1;
-                f1 = f0;
-            }
-            return Math.Min(f1, f2);
+            return 0;
         }
 
         public int ClimbStairs(int n)
@@ -73,7 +66,6 @@ namespace LeetCode
             }
 
             //_dp[target] = res;
-            //if(Int32.MaxValue-res>dict[target])
             dict[target] = res;
             
             return res;
