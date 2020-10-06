@@ -43,7 +43,7 @@ namespace LeetCode
             return CombinationSum44(candidates, n);
         }
 
-        //private  int[] _dp;
+        private  int[] _dp;
         private Dictionary<int, int> dict; 
         public int CombinationSum4(int[] candidates, int target)
         {
