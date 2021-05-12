@@ -30,10 +30,75 @@ namespace LeetCode
             //var sub = en.Subtract(st).Milliseconds;
 
             //var res = LetterCombinations("2");
-            var res = CombinationSum42(new[] { 2,4 }, 5);//3524578
+            //var res = CombinationSum42(new[] { 2,4 }, 5);//3524578
             //var res = CombinationSum4(new[] { 1, 2, 4 }, 8);
+
+            var res = KthGrammar(30, 268435456); ;// generate(4);
         }
-        
+        static int KthGrammar(int n, int k)
+        {
+            List<IList<string>> list = new List<IList<string>>();
+            if (n == 0) return 0;
+            KthGrammar(list, n, k);
+            var last = list[n - 1];
+            return Convert.ToInt32(last[k - 1].ToString());
+        }
+        static void KthGrammar(List<IList<string>> list, int n, int k)
+        {
+            if (n == 1)
+                list.Add(new List<string>() { "0" });
+            else
+            {
+                KthGrammar(list, n - 1, k);
+                List<string> previousList = list[n - 2].ToList();
+                List<string> currentList = new List<string>();
+                foreach (var prev in previousList)
+                {
+                    if (prev == "0")
+                    {
+                        currentList.AddRange(new string[] { "0", "1" });
+                    }
+                    else
+                    {
+                        currentList.AddRange(new string[] { "1", "0" });
+                    }
+                }
+                list.Add(currentList);
+            }
+        }
+        static List<IList<int>> generate(int numRows)
+        {
+
+            List<IList<int>> triangle = new List<IList<int>>();
+            if (numRows == 0) return triangle;
+
+            generate(triangle, numRows);
+            return triangle;
+        }
+
+        static void generate(List<IList<int>> list, int numRows)
+        {
+            if (numRows == 1)
+            {
+                list.Add(new List<int>() { 1 });
+            }
+            else
+            {
+                generate(list, numRows - 1);
+
+                List<int> previousList = list[numRows - 2].ToList();
+                List<int> currentList = new List<int>();
+
+                for (int i = 0; i < previousList.Count; i++)
+                {
+                    if (i == 0) currentList.Add(1);
+                    if (i > 0) currentList.Add(previousList[i] + previousList[i - 1]);
+                    if (i == previousList.Count() - 1) currentList.Add(1);
+                }
+
+                list.Add(currentList);
+            }
+        }
         
         static IList<string> LetterCombinations(string digits)
         {

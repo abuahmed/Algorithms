@@ -9,7 +9,7 @@ namespace HackerRank
         {
             //var maxtoys = MaximumToys(50, new[] {1, 12, 5, 111, 200, 1000, 10});
             ////var maxtoys = MaximumToys(7, new[] { 1, 2, 3, 4 });
-            //var noofswaps = BubbleSort2(3, new[] {3, 2, 1});
+            var noofswaps = BubbleSort2(3, new[] {3, 2, 1});
             //BubbleSort( new[] {3, 2, 1});
 
             var players = new Player[]

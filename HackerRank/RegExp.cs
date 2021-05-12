@@ -93,7 +93,7 @@ namespace HackerRank
             return 0;
         }
 
-        private static bool CheckGmailAccounts(string emailId)
+        private  bool CheckGmailAccounts(string emailId)
         {
             var regex = new Regex(@"\w@gmail.com$");//Check gmail.com emails ".+@gmail.com$"  "[a-z]+@gmail.com$" 
             regex = new Regex(@"^[a-zA-Z0-9_\\.-]+@(?:\w+\.)*\w+$");//Check Email

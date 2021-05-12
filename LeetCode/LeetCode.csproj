@@ -44,9 +44,12 @@
     <Compile Include="Arrays.cs" />
     <Compile Include="Arrays2.cs" />
     <Compile Include="Backtracking.cs" />
+    <Compile Include="BinarySearch.cs" />
     <Compile Include="Dp.cs" />
     <Compile Include="Greedy.cs" />
+    <Compile Include="Lcs.cs" />
     <Compile Include="LinkedListNode.cs" />
+    <Compile Include="SlidingWindow.cs" />
     <Compile Include="Sorting.cs" />
     <Compile Include="StacksQueues.cs" />
     <Compile Include="Strings.cs" />

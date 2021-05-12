@@ -8,21 +8,21 @@ namespace LeetCode
 {
     partial class Solution
     {
-        private static void MainArrays2(string[] args)
+        private static void Main(string[] args)
         {
-            var interval = new int[1][];
-            interval[0] = new[] { 4, 5 };
+            var interval = new int[4][];
+            //interval[0] = new[] { 4, 5 };
             //interval[1] = new[] { 1, 4 };
 
             //interval[0] = new[] { 1, 4 };
             //interval[1]=new[] {0, 2};
             //interval[2] = new[] { 3, 5 };
-//            interval[0] = new[] { 15, 18 };
-//            interval[2] = new[] { 2, 6 };
-//            interval[1] = new[] { 8, 10 };
-//            interval[3] = new[] { 1, 3 };
+            interval[0] = new[] { 1, 2 };
+            interval[1] = new[] { 2, 3 };
+            interval[2] = new[] { 3, 4 };
+            interval[3] = new[] { 4, 5 };
 
-            //var res = Merge(interval);
+            var res = Merge(interval);
 
             //var trips = new int[5][];
             //trips[0] = new[] { 9,3,6};
@@ -62,13 +62,31 @@ namespace LeetCode
             //intervals[2] = new[] { 2, 8 };
             //var res = RemoveCoveredIntervals(intervals);
 
-            var intervals = new int[4][];
-            intervals[0] = new[] { 1, 100 };
-            intervals[1] = new[] { 11, 22 };
+            //var intervals = new int[4][];
+            //intervals[0] = new[] { 1, 100 };
+            //intervals[1] = new[] { 11, 22 };
 
-            intervals[2] = new[] { 1, 11 };
-            intervals[3] = new[] { 2, 12 };
-            var res = EraseOverlapIntervals(intervals);
+            //intervals[2] = new[] { 1, 11 };
+            //intervals[3] = new[] { 2, 12 };
+            //var res = EraseOverlapIntervals(intervals);
+        }
+        public IList<string> FindRepeatedDnaSequences(string s)
+        {
+            if(s.Length<10)
+                return new List<string>();
+            var dict = new Dictionary<string, int>();
+            for (int i = 0; i+10 < s.Length; i++)
+            {
+                if (dict.ContainsKey(s.Substring(i, 10)))
+                {
+                    dict[s.Substring(i, 10)]++;
+                }
+                else
+                {
+                    dict[s.Substring(i, 10)]=1;
+                }
+            }
+            return dict.Where(d => d.Value > 1).Select(str=>str.Key).ToList();
         }
         static int[] ConstructArray(int n, int k)
         {
@@ -411,7 +429,7 @@ namespace LeetCode
             if (intervals[0].Length == 0)
                 return intervals;
 
-            Array.Sort(intervals,new SortMatrix());
+            Array.Sort(intervals, (a,b)=>a[0]-b[0] );//new SortMatrix());
             IList<int[]> lis=new List<int[]>();
             
             for (int i = 1; i < intervals.Length; i++)

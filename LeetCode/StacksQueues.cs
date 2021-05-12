@@ -291,12 +291,12 @@ namespace LeetCode
 
         private static void FloodFillRecursion(int[][] image, int sr, int sc, int newColor, int startingColor)
         {
-            var width = image.Length;
-            var height = image[0].Length;
+            var n = image.Length;
+            var m = image[0].Length;
 
             if (sr < 0 || sc < 0)
                 return ;
-            if (sr >=width || sc >=height)
+            if (sr >=n || sc >=m)
                 return;
 
             if (image[sr][sc] == startingColor)
@@ -343,6 +343,7 @@ namespace LeetCode
          
             return image;
         }
+        
         private static int[][] UpdateMatrix(int[][] matrix)
         {
             if (matrix == null || matrix.Length == 0)
@@ -393,14 +394,14 @@ namespace LeetCode
 
         private static void GetNeighbors(ref Queue<string> queue, int i, int j, int[][] matrix)
         {
-            var width = matrix.Length;
-            var height = matrix[0].Length;
+            var n = matrix.Length;
+            var m = matrix[0].Length;
 
             if (i - 1 > -1)
             {
                 queue.Enqueue((i - 1) + "_" + j);
             }
-            if (i + 1 < width)
+            if (i + 1 < n)
             {
                 queue.Enqueue((i + 1) + "_" + j);
             }
@@ -408,11 +409,39 @@ namespace LeetCode
             {
                 queue.Enqueue(i + "_" + (j - 1));
             }
-            if (j + 1 < height)
+            if (j + 1 < m)
             {
                 queue.Enqueue(i + "_" + (j + 1));
             }
         }
+        //private static void GetNeighbors( int i, int j, int[][] matrix)
+        //{
+        //    Queue<Dictionary<int,int>> queue=new Queue<Dictionary<int, int>>();
+        //    var width = matrix.Length;
+        //    var height = matrix[0].Length;
+
+        //    if (i - 1 > -1)
+        //    {
+        //        //var dict = new Dictionary<int, int> {{i - 1, j}};
+
+        //        queue.Enqueue(new Dictionary<int, int> { { i - 1, j } });
+        //    }
+        //    if (i + 1 < width)
+        //    {
+        //        queue.Enqueue((i + 1) + "_" + j);
+        //    }
+        //    if (j - 1 > -1)
+        //    {
+        //        queue.Enqueue(i + "_" + (j - 1));
+        //    }
+        //    if (j + 1 < height)
+        //    {
+        //        queue.Enqueue(i + "_" + (j + 1));
+        //    }
+
+        //    var cell = queue.Dequeue();
+        //    int ii = cell[0], jj = cell[1];
+        //}
 
         private static bool CanVisitAllRooms(IList<IList<int>> rooms)
         {
@@ -517,6 +546,7 @@ namespace LeetCode
             var total = 0;
             var list = new List<int>();
             var hashSet = new HashSet<string>();
+
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -592,32 +622,42 @@ namespace LeetCode
             if (grid == null || grid.Length == 0)
                 return 0;
             var numofislands = 0;
-            var width = grid.Length;
-            var height = grid[0].Length;
+            var rows = grid.Length;
+            var cols = grid[0].Length;
 
-            if (width == 0 || height == 0)
+            if (rows == 0 || cols == 0)
                 return 0;
             var total = 0;
             var list = new List<int>();
             var hashSet = new HashSet<string>();
-            for (int i = 0; i < width; i++)
+            var hashSe = new HashSet<Cell>();
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < cols; j++)
                 {
                     if (total != 0)
                         list.Add(total);
                     var stack = new Stack<String>();
+                    var st = new Stack<int[]>();
+                    st.Push(new []{i,j});
 
+                    int[] arr=new int[10];
+                    
                     if (grid[i][j] == '1')
                     {
                         if (!hashSet.Contains(i + "_" + j))
                         {
                             hashSet.Add(i + "_" + j);
+                            hashSe.Add(new Cell(i, j));
                             stack.Push(i + "_" + j);
                             numofislands++;
                         }
                     }
 
+                    if (hashSe.Contains(new Cell(0, 9), new Comparator()))
+                    {
+                        
+                    }
                     total = 0;
                     while (stack.Count != 0)
                     {
@@ -626,7 +666,7 @@ namespace LeetCode
                         for (int k = 0; k < size; k++)
                         {
                             var cell = stack.Pop().Split('_').Select(c => Convert.ToInt32(c)).ToArray();
-
+                            //var cel = stack.Pop();
                             int ii = cell[0], jj = cell[1];
                             grid[ii][jj] = '0';
 
@@ -638,7 +678,7 @@ namespace LeetCode
                                     stack.Push((ii - 1) + "_" + jj);
                                 }
                             }
-                            if ((ii + 1 < width) && grid[ii + 1][jj] == '1')
+                            if ((ii + 1 < rows) && grid[ii + 1][jj] == '1')
                             {
                                 if (!hashSet.Contains((ii + 1) + "_" + jj))
                                 {
@@ -654,7 +694,7 @@ namespace LeetCode
                                     stack.Push(ii + "_" + (jj - 1));
                                 }
                             }
-                            if ((jj + 1 < height) && grid[ii][jj + 1] == '1')
+                            if ((jj + 1 < cols) && grid[ii][jj + 1] == '1')
                             {
                                 if (!hashSet.Contains(ii + "_" + (jj + 1)))
                                 {
@@ -668,6 +708,19 @@ namespace LeetCode
             }
 
             return numofislands;
+        }
+    }
+
+    internal class Comparator : IEqualityComparer<Cell>
+    {
+        public bool Equals(Cell x, Cell y)
+        {
+            return x.I == y.I && x.J == y.J;
+        }
+
+        public int GetHashCode(Cell obj)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -792,5 +845,18 @@ namespace LeetCode
         {
             return _firstStack.Count == 0 && _secondStack.Count == 0;
         }
+    }
+
+    class Cell
+    {
+        public Cell(int i, int j)
+        {
+            I = i;
+            J = j;
+        }
+
+        public int I { get; set; }
+
+        public int J { get; set; }
     }
 }

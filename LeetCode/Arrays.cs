@@ -317,6 +317,8 @@ namespace LeetCode
         {
             //int[] answers=new int[2];
             var dict = new Dictionary<int, int>();
+            var dict2 = new Dictionary<Dictionary<int,int>, int>();
+            dict2.Add(dict,2);
             foreach (var num in nums)
             {
                 if (dict.ContainsKey(num))
@@ -413,6 +415,7 @@ namespace LeetCode
                 }
                 counter++;
             }
+
 
             return arr[arr.Length - 1] + k - missedNum;
         }

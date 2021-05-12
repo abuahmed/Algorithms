@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace T
 {
-    public class Program
+    public partial class Program
     {
         private static IList<string> _pathlist;// = new List<string>();
         private static IList<IList<string>> _pathlistG;// = new List<IList<string>>();
 
-        public static void Main(string[] args)
+        public static void Main2(string[] args)
         {
             ////var matrix = GetMatrix();
             ////var numOffices = Solution.NumOffices(matrix);
@@ -108,30 +108,31 @@ namespace T
         }
 
 
-        private static int CountCellsInRegions(int[,] answerMatrix, int i, int i1)
+        private static int CountCellsInRegions(int[,] answerMatrix, int i, int j)
         {
             var width = answerMatrix.GetLength(0);
             var height = answerMatrix.GetLength(1);
 
-            if (i < 0 || i1 < 0 || i > width-1 || i1 > height-1)
+            if (i < 0 || j < 0 || i > width-1 || j > height-1)
                 return 0;
-            if (answerMatrix[i, i1] == 0)
+            if (answerMatrix[i, j] == 0)
                 return 0;
-            if (answerMatrix[i, i1] == 1)
+
+            if (answerMatrix[i, j] == 1)
             {
-                answerMatrix[i, i1] = 0;
-                _pathlist.Add(i.ToString() +"_"+ i1.ToString());
+                answerMatrix[i, j] = 0;
+                _pathlist.Add(i.ToString() +"_"+ j.ToString());
             }
 
-            return 1 + CountCellsInRegions(answerMatrix, i - 1, i1)
-                   + CountCellsInRegions(answerMatrix, i, i1 - 1)
-                   + CountCellsInRegions(answerMatrix, i + 1, i1)
-                   + CountCellsInRegions(answerMatrix, i, i1 + 1)
+            return 1 + CountCellsInRegions(answerMatrix, i - 1, j)
+                   + CountCellsInRegions(answerMatrix, i, j - 1)
+                   + CountCellsInRegions(answerMatrix, i + 1, j)
+                   + CountCellsInRegions(answerMatrix, i, j + 1)
 
-                   + CountCellsInRegions(answerMatrix, i - 1, i1 - 1)
-                   + CountCellsInRegions(answerMatrix, i - 1, i1 + 1)
-                   + CountCellsInRegions(answerMatrix, i + 1, i1 - 1)
-                   + CountCellsInRegions(answerMatrix, i + 1, i1 + 1);
+                   + CountCellsInRegions(answerMatrix, i - 1, j - 1)
+                   + CountCellsInRegions(answerMatrix, i - 1, j + 1)
+                   + CountCellsInRegions(answerMatrix, i + 1, j - 1)
+                   + CountCellsInRegions(answerMatrix, i + 1, j + 1);
         }
 
         //public static char[][] GetMatrix()

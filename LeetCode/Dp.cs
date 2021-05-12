@@ -9,7 +9,7 @@ namespace LeetCode
 {
     partial class Solution
     {
-        private static void Main(string[] args)
+        private static void MainDp(string[] args)
         {
 //            var nums = new int[] {1, 2, 3};
 //            var res = new Combination().CombinationSum4(nums, 100);

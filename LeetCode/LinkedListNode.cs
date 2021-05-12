@@ -9,7 +9,7 @@ namespace LeetCode
 {
     partial class Solution
     {
-        public static void MainLinkedList(string[] args)
+        public static void MainLL(string[] args)
         {
             #region Tests
             int[] nodeData = { 6, 5, 4, 3 };//
@@ -39,7 +39,82 @@ namespace LeetCode
             //var res = RevereseLlist(singlyLinkedListNode); 
             #endregion
 
-            var hd = SortList(singlyLinkedListNode);
+            //var hd = SortList(singlyLinkedListNode);
+            //var hd = SwapPairs(singlyLinkedListNode);
+            var hd = RotateRight(singlyLinkedListNode,2);
+        }
+
+        static ListNode RotateRight(ListNode head, int k)
+        {
+            if (head == null)
+                return head;
+
+            ListNode copyHead = head;
+
+            int len = 1;
+            while (copyHead.next != null)
+            {
+                copyHead = copyHead.next;
+                len++;
+            }
+
+            copyHead.next = head;
+
+            for (int i = len - k % len; i > 1; i--)
+                head = head.next;
+
+            copyHead = head.next;
+            head.next = null;
+
+            return copyHead;
+
+            var cur = head;
+            int size = 0;
+            while (cur!=null)
+            {
+                size++;
+                cur = cur.next;
+            }
+            if (size < k)
+            {
+                k = k%size;
+            }
+
+            var slow = head;
+            var runner = head;
+            while (runner.next!=null && k>0)
+            {
+                runner = runner.next;
+                k--;
+            }
+            var newHead = runner;
+            while (runner!=null)// && runner.next.next!=null)
+            {
+                slow = slow.next;
+                runner = runner.next;
+            }
+
+            runner.next = head;
+            head = slow.next;
+            slow.next = null;
+
+            return head;
+            slow.next = null;
+            newHead.next = slow;
+
+            return newHead;
+        }
+
+        static ListNode SwapPairs(ListNode head)
+        {
+            var cur = head;
+            while (cur!=null)
+            {
+                head = head.next;
+                head.next = head;
+                cur = cur.next.next;
+            }
+            return head;
         }
         static ListNode SortList(ListNode head)
         {
