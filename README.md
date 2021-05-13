@@ -1,1 +1,1 @@
-Aselam Aleykum
+#Tests taken for training codes
