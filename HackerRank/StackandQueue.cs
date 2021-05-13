@@ -21,7 +21,7 @@ namespace HackerRank
             s = "{{[[(())]]}}";//"{[(])}";//"{[()]}";//
             //var isBalance = IsBalanced(s);
 
-            //var largestRectangle = LargestRectangle(new long[]{3,2,3});// int[]{1, 2, 3, 4, 5});
+            var largestRectangle = LargestRectangle(new long[]{3,2,3});// int[]{1, 2, 3, 4, 5});
 
             var riddle = Riddle(new long[] {1, 2, 3, 5, 1, 13, 3});//3, 5, 4, 7, 6, 2});//2, 6, 1, 12});//6,3,5,1,12});
         }
